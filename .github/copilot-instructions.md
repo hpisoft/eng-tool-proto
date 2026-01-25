@@ -4,14 +4,14 @@ This document provides guidelines and context for GitHub Copilot to assist in th
 
 ## Project Overview
 
-The Engineering Tool Prototype is an initial prototype for an engineering software tool. The specific purpose and technologies will be defined as development progresses.
+The Engineering Tool Prototype is a modular device engineering tool implemented as a VS Code extension. It provides a main view with sub-views for managing online devices and project dashboards. Key features include creating/loading/saving projects, adding/removing devices from projects, and maintaining core logic that is VS Code-independent.
 
 ## Development Guidelines
 
-- **Language**: To be determined based on requirements.
-- **Architecture**: Modular design preferred.
+- **Language**: TypeScript (for VS Code extension), with core logic in JavaScript/TypeScript designed to be framework-agnostic.
+- **Architecture**: Modular design with VS Code extension wrapper around core logic. Core modules should be testable and reusable outside VS Code.
 - **Testing**: Include unit tests for all new features.
-- **Documentation**: Maintain clear code comments and update this document as needed.
+- **Documentation**: Maintain clear code comments, update this document as needed, and create separate requirements and architecture documentation.
 
 ## Copilot Usage
 
