@@ -10,15 +10,11 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:engineeringTool.openMainView"
+    "onStartupFinished"
   ],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
-      {
-        "command": "engineeringTool.openMainView",
-        "title": "Open Engineering Tool"
-      },
       {
         "command": "engineeringTool.createProject",
         "title": "Create New Project"
@@ -35,31 +31,7 @@
         "command": "engineeringTool.closeProject",
         "title": "Close Project"
       }
-    ],
-    "menus": {
-      "commandPalette": [
-        {
-          "command": "engineeringTool.openMainView",
-          "when": "workspaceFolderCount != 0"
-        },
-        {
-          "command": "engineeringTool.createProject",
-          "when": "engineeringTool.mainViewOpen"
-        },
-        {
-          "command": "engineeringTool.loadProject",
-          "when": "engineeringTool.mainViewOpen"
-        },
-        {
-          "command": "engineeringTool.saveProject",
-          "when": "engineeringTool.mainViewOpen"
-        },
-        {
-          "command": "engineeringTool.closeProject",
-          "when": "engineeringTool.mainViewOpen"
-        }
-      ]
-    }
+    ]
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",

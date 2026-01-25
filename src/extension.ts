@@ -3,53 +3,8 @@ import * as vscode from 'vscode';
 export function activate(context: vscode.ExtensionContext) {
   console.log('Engineering Tool Prototype is now active!');
 
-  // Register the main view command
-  const openMainViewCommand = vscode.commands.registerCommand('engineeringTool.openMainView', () => {
-    // Create and show the main WebView panel
-    const panel = vscode.window.createWebviewPanel(
-      'engineeringToolMainView',
-      'Engineering Tool',
-      vscode.ViewColumn.One,
-      {
-        enableScripts: true,
-        localResourceRoots: [vscode.Uri.joinPath(context.extensionUri, 'media')]
-      }
-    );
-
-    // Set the HTML content for the main view
-    panel.webview.html = getMainViewHtml(panel.webview, context.extensionUri);
-
-    // Handle messages from the webview
-    panel.webview.onDidReceiveMessage(
-      message => {
-        switch (message.command) {
-          case 'createProject':
-            vscode.commands.executeCommand('engineeringTool.createProject');
-            return;
-          case 'loadProject':
-            vscode.commands.executeCommand('engineeringTool.loadProject');
-            return;
-          case 'saveProject':
-            vscode.commands.executeCommand('engineeringTool.saveProject');
-            return;
-          case 'closeProject':
-            vscode.commands.executeCommand('engineeringTool.closeProject');
-            return;
-          case 'addDevice':
-            // Handle adding device to project
-            return;
-          case 'removeDevice':
-            // Handle removing device from project
-            return;
-        }
-      },
-      undefined,
-      context.subscriptions
-    );
-
-    // Store the panel reference
-    context.subscriptions.push(panel);
-  });
+  // Open the main view immediately on activation
+  openMainView(context);
 
   // Register other commands
   const createProjectCommand = vscode.commands.registerCommand('engineeringTool.createProject', () => {
@@ -68,7 +23,6 @@ export function activate(context: vscode.ExtensionContext) {
     vscode.window.showInformationMessage('Close Project - Not yet implemented');
   });
 
-  context.subscriptions.push(openMainViewCommand);
   context.subscriptions.push(createProjectCommand);
   context.subscriptions.push(loadProjectCommand);
   context.subscriptions.push(saveProjectCommand);
@@ -76,6 +30,54 @@ export function activate(context: vscode.ExtensionContext) {
 }
 
 export function deactivate() {}
+
+// Function to open the main view
+function openMainView(context: vscode.ExtensionContext) {
+  // Create and show the main WebView panel
+  const panel = vscode.window.createWebviewPanel(
+    'engineeringToolMainView',
+    'Engineering Tool',
+    vscode.ViewColumn.One,
+    {
+      enableScripts: true,
+      localResourceRoots: [vscode.Uri.joinPath(context.extensionUri, 'media')]
+    }
+  );
+
+  // Set the HTML content for the main view
+  panel.webview.html = getMainViewHtml(panel.webview, context.extensionUri);
+
+  // Handle messages from the webview
+  panel.webview.onDidReceiveMessage(
+    message => {
+      switch (message.command) {
+        case 'createProject':
+          vscode.commands.executeCommand('engineeringTool.createProject');
+          return;
+        case 'loadProject':
+          vscode.commands.executeCommand('engineeringTool.loadProject');
+          return;
+        case 'saveProject':
+          vscode.commands.executeCommand('engineeringTool.saveProject');
+          return;
+        case 'closeProject':
+          vscode.commands.executeCommand('engineeringTool.closeProject');
+          return;
+        case 'addDevice':
+          // Handle adding device to project
+          return;
+        case 'removeDevice':
+          // Handle removing device from project
+          return;
+      }
+    },
+    undefined,
+    context.subscriptions
+  );
+
+  // Store the panel reference
+  context.subscriptions.push(panel);
+}
 
 // Function to generate the HTML for the main view
 function getMainViewHtml(webview: vscode.Webview, extensionUri: vscode.Uri): string {
