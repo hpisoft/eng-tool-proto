@@ -12,6 +12,7 @@ The Engineering Tool Prototype is a modular device engineering tool implemented 
 - **Architecture**: Modular design with VS Code extension wrapper around core logic. Core modules should be testable and reusable outside VS Code.
 - **Testing**: Include unit tests for all new features.
 - **Documentation**: Maintain clear code comments, update this document as needed, and create separate requirements and architecture documentation.
+- **Markdown Linting**: If changes in md files will be made the rules from md lintrc must be followed and the issues fixed.
 
 ## Copilot Usage
 
