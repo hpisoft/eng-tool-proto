@@ -1,0 +1,72 @@
+body {
+  font-family: var(--vscode-font-family);
+  font-size: var(--vscode-font-size);
+  background-color: var(--vscode-editor-background);
+  color: var(--vscode-editor-foreground);
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.toolbar {
+  display: flex;
+  padding: 10px;
+  background-color: var(--vscode-toolbar-background);
+  border-bottom: 1px solid var(--vscode-panel-border);
+}
+
+.toolbar button {
+  margin-right: 10px;
+  padding: 5px 10px;
+  background-color: var(--vscode-button-background);
+  color: var(--vscode-button-foreground);
+  border: 1px solid var(--vscode-button-border);
+  cursor: pointer;
+}
+
+.toolbar button:hover {
+  background-color: var(--vscode-button-hoverBackground);
+}
+
+.main-container {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+.online-devices {
+  width: 30%;
+  padding: 10px;
+  border-right: 1px solid var(--vscode-panel-border);
+  overflow-y: auto;
+}
+
+.project-dashboard {
+  flex: 1;
+  padding: 10px;
+  overflow-y: auto;
+}
+
+#deviceList, #projectDevices {
+  margin-top: 10px;
+}
+
+.device-item {
+  padding: 5px;
+  margin: 5px 0;
+  background-color: var(--vscode-list-inactiveSelectionBackground);
+  border: 1px solid var(--vscode-list-inactiveSelectionBackground);
+  cursor: pointer;
+}
+
+.device-item:hover {
+  background-color: var(--vscode-list-hoverBackground);
+}
+
+.device-item button {
+  margin-left: 10px;
+  padding: 2px 5px;
+  font-size: 0.8em;
+}
