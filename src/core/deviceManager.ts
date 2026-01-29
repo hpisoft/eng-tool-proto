@@ -18,14 +18,7 @@ export class DeviceManager {
   }
 
   /**
-   * Discover connected USB devices (excluding hubs) using PowerShell Get-PnpDevice cmdlet.
-   * Windows-specific implementation for prototyping and simplification.
-   *
-   * Mapping:
-   * - Device.id = Windows PnP InstanceId
-   * - Device.type = Device Class name
-   * - Device.typeId = ClassGuid (GUID of the device class)
-   * - Device.typeName = Class (device class name)
+   * Discover connected devices
    */
   async discoverDevices(): Promise<void> {
     try {
