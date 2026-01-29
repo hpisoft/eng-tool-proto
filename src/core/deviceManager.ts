@@ -1,21 +1,66 @@
 // core/deviceManager.ts - VS Code independent device management
 
+import { execSync } from 'child_process';
+
 export interface Device {
   id: string;
   type: string;
-  path: string;
+  typeId: string;
+  typeName: string;
 }
 
 export class DeviceManager {
   private devices: Device[] = [];
 
   constructor() {
-    // Initialize with sample devices for now
-    this.devices = [
-      { id: 'dev1', type: 'Sensor', path: '/dev/sensor1' },
-      { id: 'dev2', type: 'Actuator', path: '/dev/actuator1' },
-      { id: 'dev3', type: 'Controller', path: '/dev/controller1' }
-    ];
+    // start empty; call discoverDevices() to populate
+    this.devices = [];
+  }
+
+  /**
+   * Discover connected USB devices (excluding hubs) using PowerShell Get-PnpDevice cmdlet.
+   * Windows-specific implementation for prototyping and simplification.
+   *
+   * Mapping:
+   * - Device.id = Windows PnP InstanceId
+   * - Device.type = Device Class name
+   * - Device.typeId = ClassGuid (GUID of the device class)
+   * - Device.typeName = Class (device class name)
+   */
+  async discoverDevices(): Promise<void> {
+    try {
+      // Query USB devices (excluding hubs with PNPClass="USB")
+      const psCmd = `Get-PnpDevice -PresentOnly | Where-Object { $_.InstanceId -like 'USB*' -and $_.PNPClass -ne 'USB' } | Select-Object InstanceId, Class, ClassGuid | ConvertTo-Json`;
+      const cmd = `powershell -NoProfile -Command "${psCmd.replace(/"/g, '\\"')}"`;
+      const stdout = execSync(cmd, { encoding: 'utf8' }).trim();
+
+      if (!stdout) {
+        console.log('[DeviceManager] No USB devices found');
+        this.devices = [];
+        return;
+      }
+
+      let parsed: any = JSON.parse(stdout);
+      if (!Array.isArray(parsed)) {
+        parsed = [parsed];
+      }
+
+      this.devices = parsed.map((d: any) => {
+        const devId = d.InstanceId || '';
+
+        return {
+          id: devId,
+          type: d.Class || 'USB',
+          typeId: d.ClassGuid || '',
+          typeName: d.Class || 'USB'
+        };
+      });
+
+      console.log('[DeviceManager] Discovered USB devices via Get-PnpDevice (PNPClass != USB):', this.devices.length);
+    } catch (err) {
+      console.error('[DeviceManager] discoverDevices failed:', err);
+      this.devices = [];
+    }
   }
 
   getOnlineDevices(): Device[] {

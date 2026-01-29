@@ -1,10 +1,15 @@
 import * as vscode from 'vscode';
+import { DeviceManager } from './core/deviceManager';
 
 export function activate(context: vscode.ExtensionContext) {
-  console.log('Engineering Tool Prototype is now active!');
+  console.log('[Engineering Tool] Extension activating...');
 
-  // Open the main view immediately on activation
-  openMainView(context);
+  // Instantiate DeviceManager (VS Code independent) and open main view
+  const deviceManager = new DeviceManager();
+  console.log('[Engineering Tool] DeviceManager instantiated');
+  
+  openMainView(context, deviceManager);
+  console.log('[Engineering Tool] Main view opened');
 
   // Register other commands
   const createProjectCommand = vscode.commands.registerCommand('engineeringTool.createProject', () => {
@@ -32,7 +37,7 @@ export function activate(context: vscode.ExtensionContext) {
 export function deactivate() {}
 
 // Function to open the main view
-function openMainView(context: vscode.ExtensionContext) {
+async function openMainView(context: vscode.ExtensionContext, deviceManager: DeviceManager) {
   // Create and show the main WebView panel
   const panel = vscode.window.createWebviewPanel(
     'engineeringToolMainView',
@@ -77,6 +82,17 @@ function openMainView(context: vscode.ExtensionContext) {
 
   // Store the panel reference
   context.subscriptions.push(panel);
+
+  // Discover USB devices and send the list to the webview
+  try {
+    console.log('[Engineering Tool] Starting USB device discovery...');
+    await deviceManager.discoverDevices();
+    const devices = deviceManager.getOnlineDevices();
+    panel.webview.postMessage({ command: 'devices', devices });
+    console.log('[Engineering Tool] Device list posted to webview');
+  } catch (err) {
+    console.error('[Engineering Tool] Error discovering devices:', err);
+  }
 }
 
 // Function to generate the HTML for the main view

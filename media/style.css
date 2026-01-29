@@ -54,19 +54,67 @@ body {
 }
 
 .device-item {
-  padding: 5px;
-  margin: 5px 0;
+  padding: 10px;
+  margin: 10px 0;
   background-color: var(--vscode-list-inactiveSelectionBackground);
   border: 1px solid var(--vscode-list-inactiveSelectionBackground);
   cursor: pointer;
+  border-radius: 4px;
 }
 
 .device-item:hover {
   background-color: var(--vscode-list-hoverBackground);
 }
 
-.device-item button {
-  margin-left: 10px;
-  padding: 2px 5px;
-  font-size: 0.8em;
+.device-content {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.device-table {
+  flex: 1;
+  border-collapse: collapse;
+  font-size: 0.9em;
+}
+
+.device-table tr {
+  border-bottom: 1px solid var(--vscode-panel-border);
+}
+
+.device-table td {
+  padding: 5px;
+}
+
+.device-table .prop-name {
+  font-weight: bold;
+  width: 100px;
+  color: var(--vscode-symbolIcon-fieldForeground);
+}
+
+.device-table .prop-value {
+  word-break: break-all;
+  font-family: var(--vscode-editor-font-family, monospace);
+  font-size: 0.85em;
+}
+
+.add-button {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 1px solid var(--vscode-button-border);
+  background-color: var(--vscode-button-background);
+  color: var(--vscode-button-foreground);
+  font-size: 1.2em;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.add-button:hover {
+  background-color: var(--vscode-button-hoverBackground);
 }

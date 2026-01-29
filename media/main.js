@@ -19,14 +19,19 @@ document.getElementById('closeProjectBtn').addEventListener('click', () => {
   vscode.postMessage({ command: 'closeProject' });
 });
 
-// Sample data for demonstration
-const sampleDevices = [
-  { id: 'dev1', type: 'Sensor', path: '/dev/sensor1' },
-  { id: 'dev2', type: 'Actuator', path: '/dev/actuator1' },
-  { id: 'dev3', type: 'Controller', path: '/dev/controller1' }
-];
+// Devices received from the extension
+let sampleDevices = [];
 
 const projectDevices = [];
+
+// Handle messages from the extension
+window.addEventListener('message', event => {
+  const message = event.data;
+  if (message.command === 'devices') {
+    sampleDevices = message.devices || [];
+    renderOnlineDevices();
+  }
+});
 
 // Function to render online devices
 function renderOnlineDevices() {
@@ -37,10 +42,25 @@ function renderOnlineDevices() {
     const deviceItem = document.createElement('div');
     deviceItem.className = 'device-item';
     deviceItem.innerHTML = `
-      <strong>${device.type}</strong><br>
-      ID: ${device.id}<br>
-      Path: ${device.path}
-      <button onclick="addToProject('${device.id}')">Add to Project</button>
+      <div class="device-content">
+        <table class="device-table">
+          <tr>
+            <td class="prop-name">Device ID</td>
+            <td class="prop-value">${device.id}</td>
+          </tr>
+          <tr>
+            <td class="prop-name">Type ID</td>
+            <td class="prop-value">${device.typeId}</td>
+          </tr>
+          <tr>
+            <td class="prop-name">Type Name</td>
+            <td class="prop-value">${device.typeName}</td>
+          </tr>
+        </table>
+        <button class="add-button" onclick="addToProject('${device.id}')" title="Add to Project">
+          <span>+</span>
+        </button>
+      </div>
     `;
     deviceList.appendChild(deviceItem);
   });
@@ -60,9 +80,9 @@ function renderProjectDevices() {
     const deviceItem = document.createElement('div');
     deviceItem.className = 'device-item';
     deviceItem.innerHTML = `
-      <strong>${device.type}</strong><br>
-      ID: ${device.id}<br>
-      Path: ${device.path}
+      <strong>${device.typeName}</strong><br>
+      Device ID: ${device.id}<br>
+      Type ID: ${device.typeId}
       <button onclick="removeFromProject('${device.id}')">Remove</button>
     `;
     projectDevicesDiv.appendChild(deviceItem);
