@@ -1,0 +1,66 @@
+## .gitignore for Python driver
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+dist/
+*.egg-info/
+pip-wheel-metadata/
+wheelhouse/
+
+# Virtual environments
+venv/
+.env/
+.venv/
+ENV/
+env/
+venv.bak/
+
+# Pytest
+.pytest_cache/
+
+# mypy
+.mypy_cache/
+
+# Coverage
+htmlcov/
+.coverage
+coverage.xml
+
+# IPython
+.ipynb_checkpoints
+
+# PyInstaller
+#  Usually these files are written by a python script from a template
+#  before PyInstaller builds the exe, so as to inject date/other infos into it.
+*.manifest
+*.spec
+
+# IDEs
+.vscode/
+.idea/
+
+# Tools
+.ropeproject/
+
+# Local env vars file
+.env.local
+
+# Logs and temp
+*.log
+*.tmp
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Python version managers
+.python-version

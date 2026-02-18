@@ -1,0 +1,43 @@
+## .gitignore for .NET driver
+
+# Build outputs
+bin/
+obj/
+publish/
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.ide
+*.VC.db
+
+# Rider / JetBrains
+.idea/
+
+# VS Code settings
+.vscode/
+
+# NuGet
+packages/
+*.nupkg
+.nuget/
+
+# Generated artifacts / compiled binaries
+*.dll
+*.exe
+*.pdb
+*.cache
+
+# Logs and temp
+*.log
+*.tmp
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Lock / assets
+project.assets.json
+packages.lock.json

@@ -1,0 +1,72 @@
+# Node
+node_modules/
+
+# Build outputs
+dist/
+build/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Runtime
+.env
+
+# Coverage
+coverage/
+
+# Optional npm cache
+.npm/
+
+# IDEs
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+## .gitignore for Node.js driver
+
+# Node modules
+node_modules/
+
+# Build outputs
+dist/
+build/
+lib/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Runtime / environment
+.env
+.env.local
+
+# Coverage
+coverage/
+nyc_output/
+
+# Optional npm cache
+.npm/
+
+# Next / Gatsby / Vite caches
+.next/
+.parcel-cache/
+.turbo/
+
+# TypeScript
+*.tsbuildinfo
+
+# IDEs
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Lockfiles: keep package-lock.json committed, but ignore shrinkwrap if present
+npm-shrinkwrap.json
