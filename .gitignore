@@ -1,3 +1,39 @@
+# Node
+node_modules/
+
+# TypeScript / VS Code extension outputs
+out/
+host-extension/out/
+
+# Drivers build outputs
+drivers/*/bin/
+drivers/*/obj/
+
+# Dotnet
+*.user
+*.suo
+*.userosscache
+*.sln.ide
+
+# Python
+__pycache__/
+*.py[cod]
+venv/
+.venv/
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDEs
+.vscode/
+.idea/
+
+# Lockfiles (keep package-lock.json committed if you want)
+npm-shrinkwrap.json
 # Dependencies
 node_modules/
 package-lock.json
