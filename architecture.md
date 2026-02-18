@@ -6,6 +6,12 @@ The Engineering Tool Prototype follows a modular architecture designed to separa
 VS Code-specific code from core business logic. This ensures that the core
 functionality can be reused in other environments or frameworks.
 
+## Repository Layout
+
+- `host-extension/`: VS Code extension and media assets (moved from repository root).
+- `drivers/`: driver projects (`dotnet-driver`, `python-driver`, `node-driver`).
+- Top-level `src/` and `media/` files have been removed and relocated into `host-extension/`.
+
 ## High-Level Architecture
 
 ```text

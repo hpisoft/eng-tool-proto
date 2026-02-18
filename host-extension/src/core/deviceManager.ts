@@ -1,5 +1,3 @@
-// core/deviceManager.ts - VS Code independent device management
-
 import { execSync } from 'child_process';
 
 export interface Device {
@@ -13,16 +11,11 @@ export class DeviceManager {
   private devices: Device[] = [];
 
   constructor() {
-    // start empty; call discoverDevices() to populate
     this.devices = [];
   }
 
-  /**
-   * Discover connected devices
-   */
   async discoverDevices(): Promise<void> {
     try {
-      // Query USB devices (excluding hubs with PNPClass="USB")
       const psCmd = `Get-PnpDevice -PresentOnly | Where-Object { $_.InstanceId -like 'USB*' -and $_.PNPClass -ne 'USB' } | Select-Object InstanceId, Class, ClassGuid | ConvertTo-Json`;
       const cmd = `powershell -NoProfile -Command "${psCmd.replace(/"/g, '\\"')}"`;
       const stdout = execSync(cmd, { encoding: 'utf8' }).trim();

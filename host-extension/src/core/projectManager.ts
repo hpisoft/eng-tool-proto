@@ -1,5 +1,3 @@
-// core/projectManager.ts - VS Code independent project management
-
 import { Device } from './deviceManager';
 
 export interface Project {

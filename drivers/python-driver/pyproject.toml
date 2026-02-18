@@ -1,0 +1,8 @@
+[project]
+name = "engineering_tool_python_driver"
+version = "0.0.1"
+description = "Python driver placeholder for Engineering Tool"
+
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
