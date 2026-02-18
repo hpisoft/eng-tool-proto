@@ -42,6 +42,7 @@
     "compile": "npm --prefix host-extension run build",
     "watch": "npm --prefix host-extension run watch",
     "build:all": "npm --prefix host-extension run build",
+    "build:drivers": "dotnet build drivers/dotnet-driver && (py -3 -m py_compile drivers/python-driver/main.py || python -m py_compile drivers/python-driver/main.py || echo 'python not available, skipping python check') && npm --prefix drivers/node-driver run build",
     "pretest": "npm run compile && npm run lint",
     "lint": "eslint src --ext ts",
     "test": "node ./out/test/runTest.js"
