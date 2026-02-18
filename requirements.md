@@ -57,6 +57,12 @@ Each online device must provide the following minimal data:
 - **Open Project**: Load a project from a file and populate the project dashboard
   accordingly.
 
+### Device Type Drivers
+
+- The engineering tool shall be extended by device type drivers.
+- Device type drivers shall provide information about supported device types.
+- Device type drivers shall be process isolated from the VS Code environment.
+
 ## Non-Functional Requirements
 
 ### Architecture
