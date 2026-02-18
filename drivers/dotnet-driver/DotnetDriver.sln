@@ -6,7 +6,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "drivers", "drivers", "{7455
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dotnet-driver", "dotnet-driver", "{E135CD68-F046-34E3-A396-9CF7D251530B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotnetDriver", "drivers\dotnet-driver\DotnetDriver.csproj", "{4400AD1C-FC63-64A1-A56F-B79CAB0BDB21}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotnetDriver", "drivers\\dotnet-driver\\DotnetDriver.csproj", "{4400AD1C-FC63-64A1-A56F-B79CAB0BDB21}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
