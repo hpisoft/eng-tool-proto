@@ -2,14 +2,30 @@
   "name": "engineering-tool-host",
   "version": "0.0.1",
   "description": "Host VS Code extension for the Engineering Tool (moved from repository root)",
+  "displayName": "Engineering Tool Host",
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": ["Other"],
+  "activationEvents": ["onStartupFinished"],
+  "contributes": {
+    "commands": [
+      { "command": "engineering-tool-host.createProject", "title": "Create New Project" },
+      { "command": "engineering-tool-host.loadProject", "title": "Load Project" },
+      { "command": "engineering-tool-host.saveProject", "title": "Save Project" },
+      { "command": "engineering-tool-host.closeProject", "title": "Close Project" }
+    ]
+  },
   "main": "./out/extension.js",
   "scripts": {
     "build": "tsc -p ./",
-    "watch": "tsc -w -p ./"
+    "watch": "tsc -w -p ./",
+    "test": "node ./node_modules/@vscode/test-electron/out/runTest.js"
   },
   "devDependencies": {
     "typescript": "^5.0.0",
     "@types/node": "^18.0.0",
-    "vscode": "^1.1.56"
+    "@types/vscode": "^1.74.0",
+    "@vscode/test-electron": "^2.3.9"
   }
 }
